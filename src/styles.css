@@ -34,7 +34,6 @@ footer {
 p {
   white-space: nowrap;
 }
-
 .modal {
   display: none;
   position: fixed;
@@ -313,12 +312,7 @@ form {
   color: var(--clr-light);
 }
 
-.task.low-priority {
-  background-color: #d3f9d8;
-}
-.task.medium-priority {
-  background-color: #fff3b0;
-}
-.task.high-priority {
-  background-color: #ffd6d6;
-}
+.priority-high { background-color: #ff6961; } 
+.priority-medium { background-color: #ffC300; }
+.priority-low { background-color: #77dd77; }
+.priority-none { background-color: #d3d3d3; } 

@@ -7,12 +7,10 @@ class TodoItem {
     this.item = item;
     this.onDelete = onDelete;
     this.onToggle = onToggle;
-    this.onClick = onClick; // 新增的点击事件处理函数
+    this.onClick = onClick;
   }
   render() {
     const li = document.createElement("li");
-
-    li.textContent = this.item.text;
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -28,11 +26,12 @@ class TodoItem {
     deleteButton.addEventListener("click", () => {
       this.onDelete(this.item.id);
     });
-    // 添加点击事件监听器以创建任务列表
-    li.addEventListener("click", () => {
-      this.onClick(this.item.id); // 调用传入的点击处理函数
-    });
+    
+    const textSpan = document.createElement("span");
+    textSpan.textContent = this.item.text;
+    textSpan.addEventListener("click", () => this.onClick(this.item.id));
 
+    li.appendChild(textSpan);
     li.appendChild(checkbox);
     li.appendChild(deleteButton);
 

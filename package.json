@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack ",
-    "dev": "webpack serve ",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack serve",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
