@@ -23,30 +23,45 @@
           <h2 id="modal-title">To-do Details</h2>
           <div id="add-task-section">
             <input
+              class="form-control mb-3"
               type="text"
               id="task-title"
               placeholder="Task Title"
               required
             />
-            <textarea id="task-desc" placeholder="Task Description"></textarea>
-            <div>
-              <label>Priority:</label>
-              <input type="radio" name="priority" value="High" /> High
-              <input type="radio" name="priority" value="Medium" /> Medium
-              <input type="radio" name="priority" value="Low" /> Low
+            <textarea
+              class="form-control mb-3"
+              id="task-desc"
+              placeholder="Task Description"
+            ></textarea>
+            <div class="mb-3 priorityBox">
+              <label class="mx-2">Priority:</label>
+              <input class="ms-3" type="radio" name="priority" value="High" />
+              High
+              <input class="ms-3" type="radio" name="priority" value="Medium" />
+              Medium
+              <input class="ms-3" type="radio" name="priority" value="Low" />
+              Low
             </div>
-            <input type="date" id="due-date" />
-            <button id="create-task">Create Task</button>
+            <input
+              type="date"
+              id="due-date"
+              class="btn btn-outline-primary mb-5"
+            />
+            <button id="create-task" class="btn btn-outline-primary ms-4 mb-5">
+              Create Task
+            </button>
           </div>
           <div id="view-task-section">
             <h3>Current Tasks</h3>
             <ul id="task-list"></ul>
           </div>
           <div id="view-task-detail">
-            <h3>Task Details</h3>
-            <ul id="task-detail-list"></ul>
+            <h3 class="mb-3">Task Details</h3>
+            <ul class="py-3" id="task-detail-list"></ul>
           </div>
           <button
+            class="btn btn-outline-primary"
             onclick="document.getElementById('modal').style.display='none'"
           >
             Close

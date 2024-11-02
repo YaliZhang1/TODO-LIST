@@ -16,10 +16,14 @@ class TaskList {
 
   renderTasks(todoId) {
     const ul = document.createElement("ul");
+
     (this.tasks[todoId] || []).forEach((task) => {
       const taskItem = new TaskItem(task);
       ul.appendChild(taskItem.render());
     });
+    ul.style.display = "flex";
+    ul.style.flexDirection = "column";
+    ul.style.margin = "20px";
     return ul;
   }
 }

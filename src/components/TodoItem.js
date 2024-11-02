@@ -26,7 +26,7 @@ class TodoItem {
     deleteButton.addEventListener("click", () => {
       this.onDelete(this.item.id);
     });
-    
+
     const textSpan = document.createElement("span");
     textSpan.textContent = this.item.text;
     textSpan.addEventListener("click", () => this.onClick(this.item.id));

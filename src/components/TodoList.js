@@ -17,9 +17,22 @@ class TodoList {
     this.setupModal();
   }
   initAddTodo() {
+    const div = document.createElement("div");
+
+    div.style.justifyContent = "center";
+    div.style.display = "grid";
+    div.style.gridTemplateColumns = "8fr 2fr";
+    div.style.gridTemplateRows = "2fr";
+    div.style.gap = "15px";
+
     const input = document.createElement("input");
     const addButton = document.createElement("button");
     addButton.textContent = "Add Todo";
+    addButton.style.backgroundColor = "#add8e6";
+    addButton.style.color = "white";
+    addButton.style.borderRadius = "5px";
+    addButton.style.padding = "10px 20px";
+    addButton.style.border = "none";
 
     addButton.addEventListener("click", () => {
       const text = input.value.trim();
@@ -28,9 +41,9 @@ class TodoList {
         input.value = "";
       }
     });
-
-    this.container.appendChild(input);
-    this.container.appendChild(addButton);
+    div.appendChild(input);
+    div.appendChild(addButton);
+    this.container.appendChild(div);
   }
   setupModal() {
     const modal = document.getElementById("modal");
@@ -87,6 +100,7 @@ class TodoList {
     taskList.innerHTML = "";
 
     const todo = this.todos.find((todo) => todo.id === todoId);
+    //tasks?表示tasks如果是undefined或是null，则不再继续往下运行forEach
     todo.tasks?.forEach((task) => {
       const taskItem = document.createElement("li");
       taskItem.textContent = task.title;
