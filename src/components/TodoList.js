@@ -102,7 +102,9 @@ class TodoList {
     const todo = this.todos.find((todo) => todo.id === todoId);
     //tasks?表示tasks如果是undefined或是null，则不再继续往下运行forEach
     todo.tasks?.forEach((task) => {
-      const taskItem = document.createElement("li");
+      const taskItemDiv = document.createElement("li");
+      const taskItem = document.createElement("p");
+
       taskItem.textContent = task.title;
       taskItem.onclick = () => this.viewTask(task);
 
@@ -130,10 +132,10 @@ class TodoList {
           this.updateTaskList(todoId);
         }
       };
-
-      taskItem.appendChild(toggleButton);
-      taskItem.appendChild(deleteButton);
-      taskList.appendChild(taskItem);
+      taskItemDiv.appendChild(taskItem);
+      taskItemDiv.appendChild(toggleButton);
+      taskItemDiv.appendChild(deleteButton);
+      taskList.appendChild(taskItemDiv);
     });
   }
 
@@ -175,7 +177,9 @@ class TodoList {
     listItem.appendChild(descriptionElement);
     listItem.appendChild(priorityElement);
     listItem.appendChild(dueDateElement);
+    listItem.style.padding = "30px";
     viewTaskDetail.appendChild(listItem);
+
     document.getElementById("view-task-detail").style.display = "block";
   }
 
@@ -193,11 +197,12 @@ class TodoList {
   }
 
   editField(field, taskId, task, editButton) {
-    const fieldElement = document.getElementById(field);
-    const currentValue = fieldElement.textContent;
+    const fieldElement = document.getElementById(field); //使用 document.getElementById(field) 获取要编辑的字段元素。
+    const currentValue = fieldElement.textContent; //获取该元素当前显示的文本内容，存储在 currentValue 变量中。
 
     let input;
     if (field === "task-priority") {
+      //如果 field 是 "task-priority"，则创建一组单选按钮（radio buttons）供用户选择优先级（高、中、低）。
       fieldElement.innerHTML = "";
       ["High", "Medium", "Low"].forEach((priority) => {
         const label = document.createElement("label");
@@ -212,6 +217,7 @@ class TodoList {
         fieldElement.appendChild(label);
       });
     } else {
+      //如果 field 是 "task-due-date" 或其他类型，则创建一个文本输入框或日期输入框，并将当前值设置为输入框的初始值。
       input = document.createElement("input");
       input.type = field === "task-due-date" ? "date" : "text";
       input.value = currentValue;
@@ -220,7 +226,7 @@ class TodoList {
     }
 
     editButton.style.display = "none";
-
+    //创建一个确认按钮（checkButton）
     const checkButton = document.createElement("button");
     checkButton.textContent = "✔️";
     checkButton.onclick = () => {
@@ -229,7 +235,9 @@ class TodoList {
           ? document.querySelector('input[name="priority"]:checked')?.value
           : input.value;
       this.saveEdit(field, taskId, newValue);
+      //将 fieldElement 的文本内容更新为新值。
       fieldElement.textContent = newValue;
+      //重新显示编辑按钮，并移除确认和取消按钮。
       editButton.style.display = "inline";
       checkButton.remove();
       crossButton.remove();
@@ -259,6 +267,7 @@ class TodoList {
       const taskContainer = document
         .getElementById("task-detail-list")
         .querySelector("li");
+
       taskContainer.className = this.getPriorityClass(newValue);
     } else if (field === "task-due-date") {
       task.dueDate = newValue;

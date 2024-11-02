@@ -4,6 +4,18 @@
   font-family: Poppins, sans-serif;
   box-sizing: border-box;
   list-style-type: none;
+  button {
+    text-align: center;
+    justify-items: end;
+    background-color: #add8e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* 添加过渡效果 */
+  }
 }
 header {
   background-color: #7887ab;
@@ -88,8 +100,61 @@ p {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  min-width: 800px;
   gap: 10px;
   color: #000;
+  #add-task-section {
+    #due-date {
+      background-color: #add8e6;
+    }
+    #create-task {
+      background-color: #add8e6;
+    }
+  }
+  #view-task-section {
+    #task-list {
+      li {
+        display: grid;
+        grid-template-columns: 8fr 2fr 2fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        margin-top: 15px;
+        p {
+          cursor: pointer;
+          min-width: 80px;
+          height: 30px;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+
+          &:hover {
+            transform: translateY(-2px); /* 点击后下降2px */
+            background-color: #add8e6;
+            color: white;
+          }
+        }
+        button {
+          min-width: 80px;
+          max-height: 30px;
+        }
+      }
+    }
+  }
+  #view-task-detail {
+    h4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      margin-bottom: 40px;
+      background-color: #f3f3ee;
+    }
+    p {
+      display: grid;
+      grid-template-columns: 1fr 6fr 1fr;
+      grid-template-rows: 1fr;
+    }
+  }
 }
 
 .close {
