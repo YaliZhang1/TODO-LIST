@@ -1,0 +1,1 @@
+import TodoList from"./components/TodoList.js";import"./styles.css";const app=document.getElementById("app"),todoList=new TodoList(app);todoList.render();
