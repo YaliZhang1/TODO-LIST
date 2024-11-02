@@ -104,9 +104,22 @@ class TodoList {
     todo.tasks?.forEach((task) => {
       const taskItemDiv = document.createElement("li");
       const taskItem = document.createElement("p");
+      let isTaskOpen = false; // 用于跟踪任务是否打开
 
       taskItem.textContent = task.title;
-      taskItem.onclick = () => this.viewTask(task);
+      const toggleTaskView = () => {
+        isTaskOpen = !isTaskOpen; // 切换状态
+        isTaskOpen ? openTask() : closeTask(); // 使用三元运算符决定调用哪个函数
+      };
+      const openTask = () => {
+        this.viewTask(task);
+        document.querySelector("#view-task-detail").style.visibility =
+          "visible";
+      };
+      const closeTask = () => {
+        document.querySelector("#view-task-detail").style.visibility = "hidden";
+      };
+      taskItem.addEventListener("click", toggleTaskView);
 
       const toggleButton = document.createElement("button");
       toggleButton.textContent = task.completed ? "Not Done" : "Done";
